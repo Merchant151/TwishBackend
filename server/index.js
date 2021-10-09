@@ -1,5 +1,7 @@
 const express = require("express");
+const cron = require('node-cron');
 const bodyParser = require("body-parser");
+const fs = require('fs');
 //the bodyParser is middle ware used to process data from a post request
 const PORT = process.env.PORT || 3001;
 const PORT2 = process.env.PORT || 3002;
@@ -14,50 +16,44 @@ app2.use(bodyParser.urlencoded({ extended: true }));
 app2.use(bodyParser.json());
 console.log("bodyParser set");
 
-//app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
-
-//attempting to enable cors polocy
+//enable cors polocy
 app2.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
-/* not needed
-app.get('/', function(req, res, next) {
-  // Handle the get for this route
+/*
+//5 minute schedule
+var cronschedule = '/5 * * * *';
+//8am
+//var cronschedule =   '0 8 * * *';
+cron.schedule(cronschedule, function() {
+  console.log('cron job ran');
+  //AutoTwish.js;
 });
 */
-//bodyParser,
+
+cron.schedule('* * * * *', function() {
+  console.log('running a task every minute');
+});
+
+
 app2.post('/',  function(req, res, next) {
- // Handle the post for this route
- console.log("POST triggered at / instead of /handle");
-//failled line
- //console.log("body of post: "+ JSON.stringify(req.body, null, 2));
-//attempt two
-//bodyParser.urlencoded({extended: true});
 console.log("req of POST: "+ req +" req.body stringify" + JSON.stringify(req.body) +
-  "req.params ");
-//console.log("res of POST: "+ res+" "+ JSON.stringify(req));
+  "writting file");
+  fs.appendFile("test.txt", JSON.stringify(req.body), function(err) {
+      if (err) {
+          console.log(err);
+      }
+  });
+
 console.log(`statusCode: ${res.statusCode}`);
  res.end('Passed to client.')
 });
 
 app.get("/api", (req, res) => {
   res.json({ message: "Attempting post!" });
-});
-
-
-/* I am going to try app post next.
-router.post("/handle",(reqPost,resPost) => {
-//code to perform particular action.
-//To access POST variable use req.body()methods.
-console.log(reqPost.body);
-});
-*/
-app2.post("/handle", (req, res) => {
-  console.log("POST triggered");
 });
 
 app2.use("/", router);
