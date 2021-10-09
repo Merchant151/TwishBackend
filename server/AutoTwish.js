@@ -7,6 +7,7 @@ sgMail.setApiKey(SENDGRID_API_KEY);
 const fs = require('fs');
 var ourdata = "";
 //read file to data
+console.log("AutoTwish.js started.")
 fs.readFile(file, 'utf8' , (err, data) => {
   if (err) {
     console.error(err)

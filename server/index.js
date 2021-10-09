@@ -23,21 +23,22 @@ app2.use(function(req, res, next) {
   next();
 });
 
-/*
+
 //5 minute schedule
-var cronschedule = '/5 * * * *';
+var cronschedule = '*/5 * * * *';
 //8am
 //var cronschedule =   '0 8 * * *';
 cron.schedule(cronschedule, function() {
+  let autoTwish = require("./AutoTwish.js")
   console.log('cron job ran');
   //AutoTwish.js;
 });
-*/
 
+/*
 cron.schedule('* * * * *', function() {
   console.log('running a task every minute');
 });
-
+*/
 
 app2.post('/',  function(req, res, next) {
 console.log("req of POST: "+ req +" req.body stringify" + JSON.stringify(req.body) +
