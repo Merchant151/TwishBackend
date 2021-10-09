@@ -25,12 +25,18 @@ app2.use(function(req, res, next) {
 
 
 //5 minute schedule
-var cronschedule = '*/5 * * * *';
+var cronschedule = '* * * * *';
 //8am
 //var cronschedule =   '0 8 * * *';
+const autoTwish = require("./AutoTwish.js");
 cron.schedule(cronschedule, function() {
-  let autoTwish = require("./AutoTwish.js")
   console.log('cron job ran');
+  try{
+    console.log("running auto");
+    autoTwish.auto();
+  }catch(err){
+    console.log('there was an error with auto'+err);
+  }
   //AutoTwish.js;
 });
 

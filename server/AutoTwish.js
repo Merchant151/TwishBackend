@@ -5,30 +5,38 @@ const sgMail = require("@sendgrid/mail");
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 sgMail.setApiKey(SENDGRID_API_KEY);
 const fs = require('fs');
-var ourdata = "";
-//read file to data
-console.log("AutoTwish.js started.")
-fs.readFile(file, 'utf8' , (err, data) => {
-  if (err) {
-    console.error(err)
-    return
-  }
+console.log(SENDGRID_API_KEY);
 
-  const array = dataslice(data);
+//auto();
 
-  var jsonArray = [];
-  for (let i = 0; i < array.length; i++) {
-  jsonArray.push(JSON.parse(array[i]));
-  console.log(jsonArray[i].message);
-  }
-  //removecopys
-  jsonArray = removecopys(jsonArray);
-  //sendanydue
-  sendAnyDue(jsonArray);
+function auto(){
+  var ourdata = "";
+  //read file to data
+  console.log("AutoTwish.js started.")
+  fs.readFile(file, 'utf8' , (err, data) => {
+    if (err) {
+      console.error(err)
+      return
+    }
 
-  //save
-  save(jsonArray);
-});
+    const array = dataslice(data);
+
+    var jsonArray = [];
+    for (let i = 0; i < array.length; i++) {
+    jsonArray.push(JSON.parse(array[i]));
+    console.log(jsonArray[i].message);
+    }
+    //removecopys
+    jsonArray = removecopys(jsonArray);
+    //sendanydue
+    sendAnyDue(jsonArray);
+
+    //save
+    save(jsonArray);
+  });
+
+}
+exports.auto = auto;
 
 function sendAnyDue(jsonArray){
   var today = new Date();
