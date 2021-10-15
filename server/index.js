@@ -3,8 +3,8 @@ const cron = require('node-cron');
 const bodyParser = require("body-parser");
 const fs = require('fs');
 //the bodyParser is middle ware used to process data from a post request
-const PORT = process.env.PORT || 3001;
-const PORT2 = process.env.PORT2 || 3002;
+const PORT3 = process.env.PORT3 || 3001;
+const PORT = process.env.PORT || 443;
 
 const router = express.Router();
 
@@ -64,9 +64,8 @@ app.get("/api", (req, res) => {
 });
 
 app2.use("/", router);
-app2.listen(PORT2, () => console.log("Server listening at http://%s:%s",
-    "localhost", PORT2));
+app2.listen(PORT, () => console.log("Server listening at " + PORT));
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+app.listen(PORT3, () => {
+  console.log(`Server listening on ${PORT3}`);
 });
