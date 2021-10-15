@@ -24,10 +24,10 @@ app2.use(function(req, res, next) {
 });
 
 
-//5 minute schedule
-//var cronschedule = '* * * * *';
+//1 minute schedule
+var cronschedule = '* * * * *';
 //8am
-var cronschedule =   '0 8 * * *';
+//var cronschedule =   '0 8 * * *';
 const autoTwish = require("./AutoTwish.js");
 cron.schedule(cronschedule, function() {
   console.log('cron job ran');
