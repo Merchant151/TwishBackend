@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const fs = require('fs');
 //the bodyParser is middle ware used to process data from a post request
 const PORT = process.env.PORT || 3001;
-const PORT2 = process.env.PORT || 3002;
+const PORT2 = process.env.PORT2 || 3002;
 
 const router = express.Router();
 
@@ -25,9 +25,9 @@ app2.use(function(req, res, next) {
 
 
 //5 minute schedule
-var cronschedule = '* * * * *';
+//var cronschedule = '* * * * *';
 //8am
-//var cronschedule =   '0 8 * * *';
+var cronschedule =   '0 8 * * *';
 const autoTwish = require("./AutoTwish.js");
 cron.schedule(cronschedule, function() {
   console.log('cron job ran');
@@ -37,7 +37,7 @@ cron.schedule(cronschedule, function() {
   }catch(err){
     console.log('there was an error with auto'+err);
   }
-  //AutoTwish.js;
+  //AutoTwish.js;GrabData
 });
 
 /*
