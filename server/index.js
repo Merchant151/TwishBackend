@@ -25,7 +25,7 @@ app2.use(function(req, res, next) {
 
 
 //1 minute schedule
-var cronschedule2 = '*/10 * * * *';
+var cronschedule2 = '* * * * *';
 //var cronschedule2 = '* * * * *';
 //8am
 var cronschedule =   '5 8 * * *';
