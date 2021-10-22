@@ -107,7 +107,7 @@ function dataslice(data){
   ourdata = ourdata.replace(/\},\{/g,"}(,){");
   ourdata = ourdata.replace(/\}\{/g,"}(,){");
   const array = ourdata.split("(,)");
-
+  console.log('recived data formating complete');
   return array;
 }
 
