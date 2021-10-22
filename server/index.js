@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const fs = require('fs');
 //the bodyParser is middle ware used to process data from a post request
 const PORT3 = process.env.PORT3 || 3001;
-const PORT = process.env.PORT || 443;
+const PORT = process.env.PORT || 443; //todo change this to 443
 
 const router = express.Router();
 
@@ -25,9 +25,10 @@ app2.use(function(req, res, next) {
 
 
 //1 minute schedule
-//var cronschedule = '* * * * *';
+var cronschedule2 = '*/10 * * * *';
+//var cronschedule2 = '* * * * *';
 //8am
-var cronschedule =   '0 8 * * *';
+var cronschedule =   '5 8 * * *';
 const autoTwish = require("./AutoTwish.js");
 cron.schedule(cronschedule, function() {
   console.log('cron job ran');
@@ -38,6 +39,26 @@ cron.schedule(cronschedule, function() {
     console.log('there was an error with auto'+err);
   }
   //AutoTwish.js;GrabData
+});
+
+//trying to print file every minute.
+cron.schedule(cronschedule2, function(){
+//added this function to keep server awake
+  console.log('server log.')
+  const file = "test.txt"
+  fs.readFile(file, 'utf8' , (err, data) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    const array = data;
+    //var jsonArray = [];
+    //for (let i = 0; i < array.length; i++) {
+    //jsonArray.push(JSON.parse(array[i]));
+    //console.log(jsonArray[i].message);
+    console.log(array);
+    //}
+})
 });
 
 /*
