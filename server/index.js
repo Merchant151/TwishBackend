@@ -74,7 +74,6 @@ cron.schedule('*/16 * * * *', function() {
           console.log(res.statusCode);
     });
   });
-});
 
 
 app2.post('/',  function(req, res, next) {
