@@ -28,7 +28,7 @@ app2.use(function(req, res, next) {
 var cronschedule2 = '* * * * *';
 //var cronschedule2 = '* * * * *';
 //8am
-var cronschedule =   '5 8 * * *';
+var cronschedule =   '5 10 * * *';
 const autoTwish = require("./AutoTwish.js");
 cron.schedule(cronschedule, function() {
   console.log('cron job ran');
@@ -61,11 +61,21 @@ cron.schedule(cronschedule2, function(){
 })
 });
 
-/*
-cron.schedule('* * * * *', function() {
-  console.log('running a task every minute');
+
+cron.schedule('*/16 * * * *', function() {
+  console.log('running a get every 16th minute to stay awake');
+  request({
+    uri: 'https://aqueous-retreat-86609.herokuapp.com/',
+    port: 3005,
+    method: 'GET'
+    }, function (err, res, body) {
+          console.log('sending get');
+          console.log(res.message);
+          console.log(res.statusCode);
+    });
+  });
 });
-*/
+
 
 app2.post('/',  function(req, res, next) {
 console.log("req of POST: "+ req +" req.body stringify" + JSON.stringify(req.body) +
