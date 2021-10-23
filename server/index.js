@@ -3,7 +3,7 @@ const cron = require('node-cron');
 const bodyParser = require("body-parser");
 const fs = require('fs');
 //the bodyParser is middle ware used to process data from a post request
-const PORT3 = process.env.PORT3 || 80;
+const PORT3 = process.env.PORT3 || 3003;
 const PORT = process.env.PORT || 443; //todo change this to 443
 
 const router = express.Router();
