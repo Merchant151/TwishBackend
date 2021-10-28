@@ -29,7 +29,7 @@ app2.use(function(req, res, next) {
 var cronschedule2 = '* * * * *';
 //var cronschedule2 = '* * * * *';
 //8am
-var cronschedule =   '*/5 * * * *';
+var cronschedule =   '* * * * *';
 const autoTwish = require("./AutoTwish.js");
 cron.schedule(cronschedule, function() {
   console.log('cron job ran');

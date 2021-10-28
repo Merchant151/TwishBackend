@@ -101,8 +101,8 @@ function save(jsonArray){
 }
 
 function dataslice(data){
-  ourdata = data.replace(/(\r\n|\n|\r)/gm,'');
-  ourdata = data.replace(/\[/g,'');
+  ourdata = data.replace(/(\r\n|\n|\r)/g,""); //this line doesn't work.
+  ourdata = ourdata.replace(/\[/g,'');
   ourdata = ourdata.replace(/\]/g,'');
   //marking separators
   ourdata = ourdata.replace(/\},\{/g,"}(,){");
