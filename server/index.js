@@ -5,7 +5,7 @@ const fs = require('fs');
 var request = require('request');
 //the bodyParser is middle ware used to process data from a post request
 const PORT3 = process.env.PORT3 || 3003;
-const PORT = process.env.PORT || 443; //todo change this to 443
+const PORT = process.env.PORT || 3001; //todo change this to 443
 
 const router = express.Router();
 
@@ -29,7 +29,7 @@ app2.use(function(req, res, next) {
 var cronschedule2 = '* * * * *';
 //var cronschedule2 = '* * * * *';
 //8am
-var cronschedule =   '5 10 * * *';
+var cronschedule =   '*/5 * * * *';
 const autoTwish = require("./AutoTwish.js");
 cron.schedule(cronschedule, function() {
   console.log('cron job ran');
@@ -41,11 +41,11 @@ cron.schedule(cronschedule, function() {
   }
   //AutoTwish.js;GrabData
 });
-
+/*
 //trying to print file every minute.
 cron.schedule(cronschedule2, function(){
 //added this function to keep server awake
-  console.log('server log.')
+  //console.log('server log.')
   const file = "test.txt"
   fs.readFile(file, 'utf8' , (err, data) => {
     if (err) {
@@ -61,10 +61,10 @@ cron.schedule(cronschedule2, function(){
     //}
 })
 });
-
+*/
 
 cron.schedule('*/16 * * * *', function() {
-  console.log('running a get every 16th minute to stay awake');
+  //console.log('running a get every 16th minute to stay awake');
   request({
     uri: 'https://aqueous-retreat-86609.herokuapp.com/',
     port: 3005,
